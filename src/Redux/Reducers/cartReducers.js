@@ -23,7 +23,7 @@ const cartReducers = (state = initialState, actions) =>  {
                 cart : [...state.cart, newProductInfo]
             }
         case REMOVE_FROM_CART:
-            console.log(state, actions.id)
+            // console.log(state, actions.id)
             const remainingItems = state.cart.filter(pd => pd.cartId !== actions.id);
             return{ 
                 ...state,
