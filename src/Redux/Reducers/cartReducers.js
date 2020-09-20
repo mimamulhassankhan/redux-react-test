@@ -13,13 +13,20 @@ const initialState = {
 const cartReducers = (state = initialState, actions) =>  {
     switch(actions.type){
         case ADD_TO_CART:
-            return { 
-                cart : [...state.cart, actions.id],
-                product : state.product
+            const newProductInfo = {
+                productId : actions.id,
+                name: actions.name,
+                cartId : state.cart.length +1
+            }
+            return {
+                ...state,
+                cart : [...state.cart, newProductInfo]
             }
         case REMOVE_FROM_CART:
-            const remainingItems = state.cart.filter(pd => pd.id !== actions.id);
+            console.log(state, actions.id)
+            const remainingItems = state.cart.filter(pd => pd.cartId !== actions.id);
             return{ 
+                ...state,
                 cart: remainingItems
             }
         default:
